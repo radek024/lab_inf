@@ -94,6 +94,42 @@ begin
 end;
 
 
+//Narysuj schemat zwarty algorytmu i napisz procedurę obliczającą sumę liter nazwiska
+//i imienia danej osoby oraz liczbę lat do emerytury na podstawie wieku.
+procedure infoOsoba;
+var imie, nazwisko: String; wiek: Integer;
+begin
+write('Podaj imie i nazwisko: ');
+readLn(imie);
+readLn(nazwisko);
+write('Podaj wiek: ');
+readLn(wiek);
+writeLn('Dlugosc imienia: ', length(imie), ', nazwiska: ', length(nazwisko),' ');
+writeLn('Do emerytury pozostalo: ', 65-wiek, ' lat.');
+
+end;
+
+procedure resztaDzielenie;
+var liczba1, liczba2 : Integer;
+begin
+write('Podaj pierwsza i druga liczbe: ');
+readLn(liczba1);
+readLn(liczba2);
+write(liczba1, '/',liczba2,'=',(liczba1/liczba2):0:0,' reszta ', liczba1 mod liczba2); 
+end;
+
+procedure reverseString;
+var liczba, l1, l2, l3: Integer;
+begin
+	repeat
+	write('Podaj liczbe w zakresie od 100 od 999: ');
+	readLn(liczba);
+	until (liczba>99) and (liczba<1000);
+	l1:=liczba div 100;
+	l2:=(liczba div 10)-l1*10;
+	l3:=(liczba div 1)-(l1*100+l2*10);
+	write('Liczba od tylu to: ',l3,l2,l1);
+end;
 begin
   //3.1
   //obliczenia;
@@ -128,10 +164,14 @@ begin
 
   //3.4.2
   //znakkodu;
-
-  write(Length('abc'));
+  
+  //3.4.3
+  //infoOsoba;
+  
+  //resztaDzielenie;
+  
+  reverseString;
   readLn;
-
 
 end.
 
