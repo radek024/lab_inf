@@ -1,0 +1,63 @@
+program Project1;
+
+{$mode objfpc}{$H+}
+
+uses Math;
+const N=4;
+type oceny=Array[1..N] of Real;
+var listaRadek : oceny;
+
+procedure wczytaj(var lista:oceny);
+var i : byte;
+begin
+ for i:=1 to length(lista) do
+ begin
+   write('Podaj ', i, ' ocene: ');
+   readLn(lista[i]);
+   while (lista[i]<2) or (lista[i]>5) do
+     begin
+       write('Podaj ', i ,' ocene: ');
+       readLn(lista[i]);
+     end;
+   writeLn(i, ': ',lista[i]:0:2);
+ end;
+
+end;
+
+procedure wyswietl(lista:oceny);
+var i : byte;
+begin
+ for i:=1 to length(lista) do
+ begin
+   writeLn(i,'. ',lista[i]:0:2);
+ end;
+end;
+
+function srednia(lista:oceny) : Real;
+var i: Integer; sum: Real;
+begin
+  sum:=0;
+  for i:=1 to length(lista) do sum:=sum+lista[i];
+  sum:=sum/length(lista);
+  writeLn('srednia: ',sum:0:2);
+end;
+
+procedure max(lista: oceny);
+var i: integer; rob: Real;
+begin
+  rob:=0;
+  for i:=1 to length(lista) do
+  begin;
+  if rob<lista[i] then rob:=lista[i];
+  end;
+  writeLn('najwieksza: ', rob:0:2);
+end;
+
+begin
+  //srednia;
+  wczytaj(listaRadek);
+  wyswietl(listaRadek);
+  srednia(listaRadek);
+  max(listaRadek);
+  readLn;
+end.
