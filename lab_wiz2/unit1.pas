@@ -1,0 +1,149 @@
+unit Unit1;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  ExtCtrls;
+ var pliktxt: textfile;
+type
+
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
+    ComboBox1: TComboBox;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    ListBox1: TListBox;
+    Memo1: TMemo;
+    Panel1: TPanel;
+    RadioButton1: TRadioButton;
+    RadioGroup1: TRadioGroup;
+    ScrollBar1: TScrollBar;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+    procedure ListBox1Click(Sender: TObject);
+    procedure RadioButton1Change(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure ScrollBar1Change(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.RadioButton1Change(Sender: TObject);
+begin
+  Label1.caption:=DateToStr(Date());
+end;
+
+procedure TForm1.ComboBox1Change(Sender: TObject);
+begin
+ case ComboBox1.ItemIndex of
+      0: begin
+        Panel1.Color:=clYellow;
+        Panel1.Caption:='rzulty';
+        //Label1.caption:='rzulty';
+      end;
+      1: begin
+        Panel1.Color:=clFuchsia;
+        Panel1.Caption:='rurzowy';
+        //Label1.caption:='rurzowy';
+      end;
+      2: begin
+        Panel1.Color:=$004080FF;
+        Panel1.Caption:='pomaranczowy';
+        //Label1.caption:='pomaranczowy';
+      end;
+ end;
+ Label1.caption:=ComboBox1.Text;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  ListBox1.Items.Add(Edit2.text);
+  Label2.Caption:=IntToStr(ListBox1.Items.Count);
+  Memo1.Lines.Add(Edit2.text);
+  Label3.Caption:=IntToStr(ListBox1.Items.Count);
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  ListBox1.Items.Clear();
+  Label2.Caption:=IntToStr(ListBox1.Items.Count);
+  Memo1.Lines.Clear();
+  Label3.Caption:=IntToStr(ListBox1.Items.Count);
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+ ListBox1.Items.SaveToFile('listbox1.txt');
+ Memo1.Lines.SaveToFile('memo1.txt');
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+begin
+ Memo1.CopyToClipboard;
+end;
+
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+ Memo1.CutToClipboard;
+end;
+
+procedure TForm1.Button7Click(Sender: TObject);
+begin
+  Memo1.PasteFromClipboard;
+end;
+
+procedure TForm1.ListBox1Click(Sender: TObject);
+begin
+  Label4.Caption:=ListBox1.Items[ListBox1.ItemIndex];
+end;
+
+procedure TForm1.RadioGroup1Click(Sender: TObject);
+begin
+ case RadioGroup1.ItemIndex of
+      //0: Form1.Color:=clDefault;
+      1: Form1.Color:=clRed;
+      2: Form1.Color:=clGreen;
+      3: Form1.Color:=clBlue;
+      else Form1.Color:=clDefault;
+ end;
+end;
+
+procedure TForm1.ScrollBar1Change(Sender: TObject);
+begin
+ Panel1.width:=ScrollBar1.Position;
+ Edit1.caption:=IntToStr(Panel1.width);
+end;
+
+end.
+
